@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kalkulator Konversi Suhu</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #04e3f3, #05152b);
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      background-color: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+      max-width: 400px;
+      width: 100%;
+    }
+
+    .namamahasiswa {
+      text-align: center;  
+    }
+
+
+    h2 {
+      text-align: center;
+      margin-bottom: 25px;
+      color: #333;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: bold;
+      color: #555;
+    }
+
+    input[type="number"], select {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: linear-gradient #438bf7;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #005f87;
+    }
+
+    .result {
+      margin-top: 20px;
+      padding: 15px;
+      border-radius: 8px;
+      background-color: #dff6ff;
+      color: #222;
+      font-size: 16px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+<!--     <div class="circle"></div> -->
+  <div class="container">
+    <h2>FEBRAURAYANI ZAHRA</h2>
+    <h2>Kalkulator Konversi Suhu</h2>
+
+
+    <label for="suhu">Masukkan Suhu:</label>
+    <input type="number" id="suhu" placeholder="Contoh: 30" />
+
+    <label for="konversi">Pilih Konversi:</label>
+    <select id="konversi">
+      <option value="cToF">Celcius ke Fahrenheit</option>
+      <option value="fToC">Fahrenheit ke Celcius</option>
+      <option value="cToK">Celcius ke Kelvin</option>
+    </select>
+
+    <button onclick="konversiSuhu()">Konversi</button>
+
+    <div id="hasil" class="result"></div>
+  </div>
+
+  <script>
+    function konversiSuhu() {
+      const suhuInput = parseFloat(document.getElementById('suhu').value);
+      const jenis = document.getElementById('konversi').value;
+      const hasilDiv = document.getElementById('hasil');
+
+      if (isNaN(suhuInput)) {
+        hasilDiv.style.display = 'block';
+        hasilDiv.innerHTML = 'Masukkan angka suhu yang valid.';
+        return;
+      }
+
+      let hasil;
+
+      switch(jenis) {
+        case "cToF":
+          hasil = (suhuInput * 9/5) + 32;
+          hasilDiv.innerHTML = `${suhuInput}°C = ${hasil.toFixed(2)}°F`;
+          break;
+        case "fToC":
+          hasil = (suhuInput - 32) * 5/9;
+          hasilDiv.innerHTML = `${suhuInput}°F = ${hasil.toFixed(2)}°C`;
+          break;
+        case "cToK":
+          hasil = suhuInput + 273.15;
+          hasilDiv.innerHTML = `${suhuInput}°C = ${hasil.toFixed(2)} K`;
+          break;
+      }
+
+      hasilDiv.style.display = 'block';
+    }
+  </script>
+
+</body>
+</html>
